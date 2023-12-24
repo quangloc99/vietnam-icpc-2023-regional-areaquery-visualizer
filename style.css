@@ -1,0 +1,61 @@
+body {
+    max-width: 1200px;
+    margin: 0 auto;
+    font-family: monospace;
+}
+
+#main {
+    display: grid;
+    grid-template-rows: 1fr 200px;
+    grid-template-columns: 250px 1fr;
+    grid-template-areas:
+        "input draw"
+        "status status";
+    gap: 10px;
+    width: 100%;
+    height: 90vh;
+    margin: 0;
+    padding: 0;
+}
+
+#input, #status, #draw {
+    border: 2px solid;
+}
+
+#input {
+    grid-area: input;
+    height: 100%;
+}
+
+#status {
+    padding: 0 10px;
+    grid-area: status;
+    height: 10px;
+    height: 100%;
+    overflow-y: scroll;
+    font-size: 1.1rem;
+}
+
+#status.ok {
+    border-color: green;
+}
+
+#status.error {
+    border-color: red;
+}
+
+#draw {
+    grid-area: draw;
+    width: 100%;
+    height: 100%;
+    font-size: 8px;
+}
+
+#status > .euler-tour {
+    text-align: center;
+}
+
+#preview-link {
+    width: 100%;
+    height: 50px;
+}

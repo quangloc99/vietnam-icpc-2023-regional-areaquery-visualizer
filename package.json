@@ -1,7 +1,11 @@
 {
-  "name": "icpc-vn-regional-2023-a-visualizer",
-  "packageManager": "yarn@3.3.1",
-  "dependencies": {
-    "typescript": "^5.3.3"
-  }
+    "name": "icpc-vn-regional-2023-a-visualizer",
+    "packageManager": "yarn@3.3.1",
+    "dependencies": {
+        "prettier": "^3.1.1",
+        "typescript": "^5.3.3"
+    },
+    "scripts": {
+        "build": "yarn tsc"
+    }
 }
