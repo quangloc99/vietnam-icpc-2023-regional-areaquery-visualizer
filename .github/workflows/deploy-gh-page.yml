@@ -51,7 +51,7 @@ jobs:
           mkdir -p deploy
           cp index.html deploy/
           cp style.css deploy/
-          cp dist/ deploy/
+          cp -r dist/ deploy/
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
