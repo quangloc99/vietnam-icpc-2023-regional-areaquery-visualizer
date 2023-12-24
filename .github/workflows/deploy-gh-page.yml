@@ -46,14 +46,18 @@ jobs:
       - name: Setup Pages
         uses: actions/configure-pages@v4
 
+      - name: Move files to upload to deploy/
+        run: |
+          mkdir -p deploy
+          cp index.html deploy/
+          cp style.css deploy/
+          cp dist/ deploy/
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
           # Upload entire repository
-          path: |
-            index.html
-            dist/
-            style.css
+          path: 'deploy/'
 
       - name: Deploy to GitHub Pages
         id: deployment
