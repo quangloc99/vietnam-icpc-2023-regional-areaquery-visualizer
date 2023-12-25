@@ -138,8 +138,17 @@ function getBoundingBox(points: Vec2[]): ViewBox {
     return { minX, maxX, minY, maxY };
 }
 
-function extendViewBox({ minX, maxX, minY, maxY }: ViewBox, paddingRatio: number): ViewBox {
+function extendViewBoxByRatio({ minX, maxX, minY, maxY }: ViewBox, paddingRatio: number): ViewBox {
     const padding = paddingRatio * Math.max(maxX - minX, maxY - minY);
+    return {
+        minX: minX - padding,
+        maxX: maxX + padding,
+        minY: minY - padding,
+        maxY: maxY + padding,
+    };
+}
+
+function extendViewBoxBySize({ minX, maxX, minY, maxY }: ViewBox, padding: number): ViewBox {
     return {
         minX: minX - padding,
         maxX: maxX + padding,
@@ -634,19 +643,19 @@ function process() {
     console.log(processedInput);
 
     const drawElmBounding = drawElm.getBoundingClientRect();
-    const FIXED_VIEW_BOX_WIDTH = 400;
+    const FIXED_VIEW_BOX_HEIGHT = 400;
     const viewBox = {
         minX: 0,
         minY: 0,
-        maxX: FIXED_VIEW_BOX_WIDTH,
-        maxY: (drawElmBounding.height / drawElmBounding.width) * FIXED_VIEW_BOX_WIDTH,
+        maxX: (FIXED_VIEW_BOX_HEIGHT * drawElmBounding.width) / drawElmBounding.height,
+        maxY: FIXED_VIEW_BOX_HEIGHT,
     };
 
     setSvgViewBox(drawElm, viewBox);
     const svgFontSize = Math.min(drawElmBounding.width, drawElmBounding.height) / 40;
     drawElm.style.setProperty('font-size', svgFontSize.toString());
 
-    const paddedViewBox = extendViewBox(viewBox, -0.05);
+    const paddedViewBox = extendViewBoxBySize(viewBox, -svgFontSize * 2);
     const fittedPolygon = fitPolygonToViewBox(flipPolygonYUp(input.polygon), paddedViewBox);
 
     const subpolygons = processedInput.subregions.map((subregion) => subregion.map((u) => fittedPolygon[u]));
