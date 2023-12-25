@@ -643,7 +643,7 @@ function process() {
     };
 
     setSvgViewBox(drawElm, viewBox);
-    const svgFontSize = Math.min(drawElmBounding.width, drawElmBounding.height) / 50;
+    const svgFontSize = Math.min(drawElmBounding.width, drawElmBounding.height) / 40;
     drawElm.style.setProperty('font-size', svgFontSize.toString());
 
     const paddedViewBox = extendViewBox(viewBox, -0.05);

@@ -1,21 +1,22 @@
 body {
-    max-width: 1200px;
     margin: 0 auto;
     font-family: monospace;
 }
 
 #main {
+    padding: 10px;
+}
+
+#grid-layout {
     display: grid;
     grid-template-rows: 1fr 200px;
-    grid-template-columns: 250px 1fr;
+    grid-template-columns: 120px 1fr;
     grid-template-areas:
         "input draw"
         "status status";
     gap: 10px;
-    width: 100%;
-    height: 90vh;
+    height: 70vh;
     margin: 0;
-    padding: 0;
 }
 
 #input, #status, #draw {
